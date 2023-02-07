@@ -50,7 +50,7 @@ class Lecturer(Mentor):
         if not isinstance(other, Lecturer):
             print('Not a lecturer!')
             return
-        return self.average < other.average
+        return (self.average) < (other.average)
 
     def __str__(self):
         res = f'Имя: {self.name}, Фамилия: {self.surname}, Средняя оценка за лекции: {self.average()}'
@@ -93,8 +93,14 @@ average_student.courses_in_progress += ['Python']
 bad_student.courses_in_progress += ['Python']
 middle_student.courses_in_progress += ['Python']
 best_student.courses_in_progress += ['Python']
+
+#Присоединение курсов к лекторам
+first_lecturer.courses_attached += ['Python']
+second_lecturer.courses_attached += ['Python']
+third_lecturer.courses_attached += ['Python']
 some_lecturer.courses_attached += ['Python']
 
+#Присоединение курсов к практикам
 some_reviwer.courses_attached += ['Python']
 first_reviwer.courses_attached += ['Python']
 second_reviwer.courses_attached += ['Python']
