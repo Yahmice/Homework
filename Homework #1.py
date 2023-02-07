@@ -8,7 +8,7 @@ class Student:
         self.grades = {}
     
     def rate_lecturer(self, lecturer, course, grade):
-        if isinstance(lecturer, Lecturer) and course in self.finished_courses:  
+        if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and course in self.courses_in_progress:  
             if course in lecturer.grades:
                 lecturer.grades[course] += [grade]
             else:
@@ -25,11 +25,15 @@ class Mentor:
 
 
 class Lecturer(Mentor):
+    def __init__(self,name,surname):
+        super().__init__(name, surname)
+        self.grades = {}
+
     def average (self):
         for key, sub_dict in self.grades.items():
             values = sub_dict.values()
             res = sum(values) / len(values)
-        print(res)
+        return res
 
     def __str__(self):
         res = f'Имя: {self.name}, Фамилия: {self.surname}, Средняя оценка за лекции: {self.average}'
@@ -62,8 +66,12 @@ class Reviewer(Mentor):
  
 # print(best_student.grades)
 some_reviwer = Reviewer('Some', 'Body')
-some_lecturer = Lecturer('Some', 'Body')
+some_lecturer = Lecturer('Some', 'One')
 
 best_student = Student('Shinra', 'Tensei', 'male')
 best_student.courses_in_progress += ['Python']
-best_student.rate_lecturer(some_lecturer, 'Python', 9)
+some_lecturer.courses_attached += ['Python']
+
+best_student.rate_lecturer(some_lecturer, 'Python', 8)
+
+print(some_lecturer)
