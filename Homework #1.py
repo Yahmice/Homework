@@ -6,7 +6,14 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-    
+        
+    def avg(self):
+        avg = []
+        for value in self.grades.values():
+            avg.extend(value)
+        return self.grades.values()
+        
+        
     def rate_lecturer(self, lecturer, course, grade):
         if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and course in self.courses_in_progress:  
             if course in lecturer.grades:
@@ -15,15 +22,11 @@ class Student:
                 lecturer.grades[course] = [grade]
         else:
             return 'Ошибка'
-        
-    def avg(self):
-        for key, values in self.grades.items():
-            averaga = sum(values) / len(values)
-        return averaga
-    
+
     def __str__(self):
-        res = f'Имя: {self.name}, Фамилия: {self.surname}, Средняя оценка за домашнее задание: {self.avg()}, Курсы в процессе изучения: {self.courses_in_progress}, Завершенные курсы: {self.finished_courses}'
+        res = f'Имя: {self.name}, Фамилия: {self.surname}, Средняя оценка за домашние задания: {self.avg()}, Курсы в процессе изучения: {self.courses_in_progress}, Завершенные курсы: {self.finished_courses}'
         return res
+       
 
     
 
@@ -108,7 +111,7 @@ bad_student.rate_lecturer(some_lecturer, 'Python', 4.6)
 some_reviwer.rate_hw(best_student, 'Python', 9)
 first_reviwer.rate_hw(best_student, 'Python', 8.7)
 second_reviwer.rate_hw(best_student, 'Python', 10)
-third_reviwer.rate_hw(best_student, 'Python', 9.7)
+third_reviwer.rate_hw(best_student, 'Python', 8.8)
 
 
 print(best_student)
